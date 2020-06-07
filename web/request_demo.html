@@ -1,0 +1,20 @@
+<script type='text/javascript'>
+  //https://ksweb.hotgamehl.com/gobw/isbad?src=你好
+  var httpRequest = new XMLHttpRequest()
+
+  httpRequest.open('post', 'http://127.0.0.1/test', true)
+  httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  httpRequest.onreadystatechange = function () {
+    if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+      console.log(httpRequest.responseText)
+      return
+    }
+
+    console.log('err')
+  }
+
+  httpRequest.send('appid=24&gs_group=2401')
+
+
+</script>

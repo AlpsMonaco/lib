@@ -1,0 +1,12 @@
+注册表位置：
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\服务名
+
+//删除注册表向
+REG DELETE  HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\test_main\Parameters /f
+
+//添加应用程序路径
+REG ADD HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\test_main\Parameters /v Application /d "D:\Library\AutoSrv\main.exe"
+
+//添加应用路径
+REG ADD HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\test_main\Parameters /v AppDirectory /d "D:\Library\AutoSrv"
+
