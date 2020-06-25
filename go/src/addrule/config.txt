@@ -1,2 +1,0 @@
-D:\Program Files\安全软件\Shadowsocks\user-rule.txt
-D:\Program Files\ssrr\SR-SoftWare\user-rule.txt
