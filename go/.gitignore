@@ -1,3 +1,7 @@
-src/addrule/config.txt
 bin/
 pkg/
+
+*.exe
+*.log
+
+src/addrule/config.txt
