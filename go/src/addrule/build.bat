@@ -1,0 +1,1 @@
+go build -o addrule.exe main.go
