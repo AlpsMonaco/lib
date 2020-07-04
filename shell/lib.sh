@@ -13,6 +13,11 @@ function err_exit() {
     exit 1
 }
 
+function die() {
+    print_err "$1"
+    exit 1
+}
+
 # $1文件名 $2 文本，保留\n
 function stdout_file() {
     echo -e $2 >$1
@@ -46,14 +51,8 @@ function check_error(){
     fi
 }
 
-function write_file(){
-    echo "$2" > $1
-}
 
-function write_file_append(){
-    echo "$2" >> $1
-}
-
+# 获得指定目录下的所有文件夹，并去掉结尾的/
 # $1 path
 function get_all_dir(){
     local RESULT
@@ -65,4 +64,25 @@ function get_all_dir(){
     done
 
     echo ${RESULT%%\ }
+}
+
+# 模糊匹配，杀死进程
+# $1 需要匹配的进程名
+function fuzzy_kill(){
+    PROCESS_NAME=$1
+    PID_ARR=`ps -ef | grep $PROCESS_NAME | grep -v grep | awk '{print $2}'`
+
+    for i in ${PID_ARR[@]}; do
+        kill $i
+    done
+}
+
+# 类似fuzzy_kill，不过是kill -9 强杀
+function fuzzy_force_kill(){
+    PROCESS_NAME=$1
+    PID_ARR=`ps -ef | grep $PROCESS_NAME | grep -v grep | awk '{print $2}'`
+
+    for i in ${PID_ARR[@]}; do
+        kill -9 $i
+    done
 }
