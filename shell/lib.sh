@@ -114,7 +114,7 @@ function delete_by_ext(){
     local size=$3
     local ext=$4
 
-    find $location -mtime +$mtime -size +$size -regex ".+\.$ext$" -exec printf "File:{} deleted\n" \; -exec rm rf {} \;
+    find $location -mtime +$mtime -size +$size -regex ".+\.$ext$" -exec printf "File:{} deleted\n" \; -exec rm -rf {} \;
 }
 
 #根据正则查找文件
@@ -144,5 +144,5 @@ function delete_by_regexp(){
     local size=$3
     local regexp=$4
 
-    find $location -mtime +$mtime -size +$size -regex "$regexp" -exec printf "File:{} deleted\n" \; -exec rm rf {} \;
+    find $location -mtime +$mtime -size +$size -regex "$regexp" -exec printf "File:{} deleted\n" \; -exec rm -rf {} \;
 }
