@@ -86,3 +86,63 @@ function fuzzy_force_kill(){
         kill -9 $i
     done
 }
+
+#查找含指定扩展名的文件
+# $1 location $2 time $3 size $4 扩展名
+function find_by_ext(){
+    if [  $# -lt 4 ]; then
+        echo "Need 4 param"
+    fi
+
+    local location=$1
+    local mtime=$2
+    local size=$3
+    local ext=$4
+
+    find $location -mtime +$mtime -size +$size -regex ".+\.$ext$"
+}
+
+#删除含指定扩展名的文件
+# $1 location $2 time $3 size $4 扩展名
+function delete_by_ext(){
+    if [  $# -lt 4 ]; then
+        echo "Need 4 param"
+    fi
+
+    local location=$1
+    local mtime=$2
+    local size=$3
+    local ext=$4
+
+    find $location -mtime +$mtime -size +$size -regex ".+\.$ext$" -exec printf "File:{} deleted\n" \;
+}
+
+#根据正则查找文件
+# $1 location $2 time $3 size $4 正则
+function find_by_regexp(){
+    if [  $# -lt 4 ]; then
+        echo "Need 4 param"
+    fi
+
+    local location=$1
+    local mtime=$2
+    local size=$3
+    local regexp=$4
+
+    find $location -mtime +$mtime -size +$size -regex "$regexp"
+}
+
+#根据正则删除文件
+# $1 location $2 time $3 size $4 正则
+function delete_by_regexp(){
+    if [  $# -lt 4 ]; then
+        echo "Need 4 param"
+    fi
+
+    local location=$1
+    local mtime=$2
+    local size=$3
+    local regexp=$4
+
+    find $location -mtime +$mtime -size +$size -regex "$regexp" -exec printf "File:{} deleted\n" \;
+}
